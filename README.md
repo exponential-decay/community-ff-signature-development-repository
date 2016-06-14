@@ -1,4 +1,4 @@
-# signature-development-gaps
+#Digital Preservation File Format Signature Development Repository
 
 A repository for others to contribute to, for file format signature development research.
 
