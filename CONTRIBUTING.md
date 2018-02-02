@@ -32,7 +32,7 @@ Body
 
 It's important to test signatures against real examples of a file format. If you have created an issue or found an issue for a format you'd like to have identified, consider sharing sample files with the community in the issue thread.
 
-If your organization restricts the sharing of digital materials with third-parties, consider documenting an exception for the purposes of format research. A [sample non-disclosure agreement](docs/sample_nda.md) is available if your organization requires one.
+If your organization restricts the sharing of digital materials with third-parties, consider documenting an exception for the purposes of format research. A [sample non-disclosure agreement](samples/sample_nda.md) is available if your organization requires one.
 
 If possible, consider contributing your sample files to the [OPF Format Corpus](https://github.com/openpreserve/format-corpus).
 
