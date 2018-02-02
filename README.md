@@ -1,17 +1,14 @@
-#Community Digital Preservation File Format Signature Development Repository
+# Community Digital Preservation File Format Signature Development Repository
 
 A repository for others to contribute to, for file format signature development research.
 
 I have not labelled the repository with a tool, e.g. DROID, as it can be used to develop work for mime-info, and File, and other tools alike. 
 
-Contributors should contribute by pull request, I can also grant them access to the repository. 
+## Contributing Guidelines
 
-Proposed Process:
+All contributions are welcome, including reporting formats that do not have signatures, drafting signatures, identifying specification documents, and reviewing draft signatures. Please see [CONTRIBUTING.md] for more information.
 
-1. Create a new folder by contributor name or organisation
-2. Create a sub-folder with an umbrella name for the types of file underneath, e.g. 'Archives-New-Zealand/DAT-Files'
-
-###License Terms
+## License Terms
 
 The rights for the individual files <b>remain</b> with the organisation or user contributing the material. Users may want to state their licensing terms explicitly in README.MD files underneath their contributed folders. 
 
