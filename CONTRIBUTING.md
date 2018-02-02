@@ -47,7 +47,9 @@ If you'd like to contribute a draft format signature, send it as a pull request.
 3. *format-name*-droid.xml - optional, a DROID XML formatted signature file
 4. *format-name*-roy.sig - optional, a roy-built profile
 5. *sample-file.ext* - optional, any sample files that can be shared
-6. *specification.txt* - optional, any files that detail the format specification
+6. *specification.ext* - optional, any files that detail the format specification
+
+A [sample PR](samples/sample_acs-pr) is available as reference.
 
 ## Where feasible, engage openly with the community
 
