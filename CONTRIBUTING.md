@@ -21,12 +21,12 @@ Title
 
 Body
 > Short description of the format with any information you've gathered about it, including:
-* what kind of information it holds
-* what software produces it
-* what communities use it
-* what extensions are common
-* links to any specifications or website
-* any other information you have found that is relevant.
+>- what kind of information it holds
+>- what software produces it
+>- what communities use it
+>- what extensions are common
+>- links to any specifications or website
+>- any other information you have found that is relevant.
 
 ## Share sample files
 
@@ -38,7 +38,7 @@ If possible, consider contributing your sample files to the [OPF Format Corpus](
 
 ## Develop basic signatures
 
-To learn how to create a format signature, you can read posts on the subject by [Andrea Byrne](http://openpreservation.org/blog/2016/09/08/making-the-switch-from-user-to-user-and-contributor-my-first-file-format-signature/), [Jenny Mitcham](http://digital-archiving.blogspot.com/2016/08/my-first-file-format-signature.html), Nick Krabbenhoeft(https://nypl.github.io/digpres/2018/01/30/bashing-out-a-file-format-signature.html), and Ross Spencer[http://openpreservation.org/blog/2016/01/07/droid-container-signature-files-what-they-are-and-how-to-create-them-a-template-and-an-example-or-few/]
+To learn how to create a format signature, you can read posts on the subject by [Andrea Byrne](http://openpreservation.org/blog/2016/09/08/making-the-switch-from-user-to-user-and-contributor-my-first-file-format-signature/), [Jenny Mitcham](http://digital-archiving.blogspot.com/2016/08/my-first-file-format-signature.html), [Nick Krabbenhoeft](https://nypl.github.io/digpres/2018/01/30/bashing-out-a-file-format-signature.html), and [Ross Spencer](http://openpreservation.org/blog/2016/01/07/droid-container-signature-files-what-they-are-and-how-to-create-them-a-template-and-an-example-or-few/)
 
 If you'd like to contribute a draft format signature, send it as a pull request. Pull requests should include the following items:
 
