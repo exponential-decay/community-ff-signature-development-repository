@@ -49,7 +49,9 @@ If you'd like to contribute a draft format signature, send it as a pull request.
 5. *sample-file.ext* - optional, any sample files that can be shared
 6. *specification.ext* - optional, any files that detail the format specification
 
-A [sample PR](samples/sample_acs-pr) is available as reference.
+A [sample PR](samples/sample-acs-pr) is available as reference.
+
+The Open Preservation Foundation have created a video that describes how to add samples to their [File Format Corpus](https://github.com/openpreserve/format-corpus) but may also be useful. [Video](https://www.youtube.com/watch?v=EpAjEYkyGAc&t).
 
 ## Where feasible, engage openly with the community
 
