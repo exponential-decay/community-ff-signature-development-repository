@@ -6,7 +6,7 @@ I have not labelled the repository with a tool, e.g. DROID, as it can be used to
 
 ## Contributing Guidelines
 
-All contributions are welcome, including reporting formats that do not have signatures, drafting signatures, identifying specification documents, and reviewing draft signatures. Please see [CONTRIBUTING.md] for more information.
+All contributions are welcome, including reporting formats that do not have signatures, drafting signatures, identifying specification documents, and reviewing draft signatures. Please see [CONTRIBUTING.md](CONTRIBUTING.md) for more information.
 
 ## License Terms
 
