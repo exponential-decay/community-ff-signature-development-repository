@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FFSignatureFile xmlns="http://www.nationalarchives.gov.uk/pronom/SignatureFile" Version="1" DateCreated="2018-02-05T01:48:40+00:00">
+  <InternalSignatureCollection>
+  <InternalSignature ID="1" Specificity="Specific">
+  <ByteSequence Reference="BOFoffset">
+    <SubSequence MinFragLength="1" Position="1" SubSeqMaxOffset="0" SubSeqMinOffset="0">
+      <Sequence>000100</Sequence>
+      <DefaultShift>4</DefaultShift>
+      <Shift Byte="00">1</Shift>
+      <Shift Byte="01">2</Shift>
+      <LeftFragment MaxOffset="0" MinOffset="0" Position="1">1F</LeftFragment>
+      <LeftFragment MaxOffset="0" MinOffset="0" Position="1">1E</LeftFragment>
+      <RightFragment MaxOffset="4" MinOffset="4" Position="1">01</RightFragment>
+      <RightFragment MaxOffset="4" MinOffset="4" Position="1">00</RightFragment>
+    </SubSequence>
+  </ByteSequence>
+</InternalSignature>
+</InternalSignatureCollection>
+<FileFormatCollection>
+  <FileFormat ID="1" Name="Microsoft Agent Character Animation" PUID="nypl/3" Version="1.0" MIMEType="">
+    <InternalSignatureID>1</InternalSignatureID>
+    <Extension>aca</Extension>
+    <Extension>aaf</Extension>
+  </FileFormat>
+</FileFormatCollection></FFSignatureFile>
