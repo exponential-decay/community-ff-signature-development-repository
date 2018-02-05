@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FFSignatureFile xmlns="http://www.nationalarchives.gov.uk/pronom/SignatureFile" Version="1" DateCreated="2018-02-05T02:46:33+00:00">
+  <InternalSignatureCollection>
+  <InternalSignature ID="1" Specificity="Specific">
+    <ByteSequence Reference="EOFoffset">
+      <SubSequence MinFragLength="4" Position="1" SubSeqMaxOffset="0" SubSeqMinOffset="344">
+        <Sequence>0000015C</Sequence>
+        <DefaultShift>-5</DefaultShift>
+        <Shift Byte="00">-1</Shift>
+        <Shift Byte="01">-3</Shift>
+        <Shift Byte="5C">-4</Shift>
+      </SubSequence>
+    </ByteSequence>
+  </InternalSignature>
+  <InternalSignature ID="2" Specificity="Specific">
+    <ByteSequence Reference="EOFoffset">
+      <SubSequence MinFragLength="4" Position="1" SubSeqMaxOffset="0" SubSeqMinOffset="344">
+        <Sequence>5C010000</Sequence>
+        <DefaultShift>-5</DefaultShift>
+        <Shift Byte="5C">-1</Shift>
+        <Shift Byte="01">-2</Shift>
+        <Shift Byte="00">-3</Shift>
+      </SubSequence>
+    </ByteSequence>
+  </InternalSignature>
+</InternalSignatureCollection>
+<FileFormatCollection>
+  <FileFormat ID="1" Name="Mayo Clinic Analyze 7.5" PUID="nypl/4" Version="1.0" MIMEType="">
+    <InternalSignatureID>1</InternalSignatureID>
+    <InternalSignatureID>2</InternalSignatureID>
+    <Extension>hdr</Extension>
+  </FileFormat>
+</FileFormatCollection></FFSignatureFile>
