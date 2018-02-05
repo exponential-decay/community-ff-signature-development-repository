@@ -1,0 +1,198 @@
+
+<!-- saved from url=(0084)https://www.nitrc.org/docman/view.php/26/1302/Approved%20NIfTI-2%20Format%20document -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style></style></head><body class="vsc-initialized"><b>A 64-bit update to the NIfTI format (as approved by the NIFTI
+Data Format Working Group on March 16, 2011)</b><br>
+<br>
+The NIfTI committee, in conjunction with public discussion on the
+NITRC forum, have created a final version for the NIfTI-2 format
+that is a very simple extension of the current NIfTI-1 format, but
+updated to allow 64-bit storage and addressing for large images and
+matrices.<br>
+It is intended that this format:<br>
+- will enable the storage of large images and matrices, with all
+dimensions being coded by 64-bit integers rather than the current
+limitation of 16-bit signed integers (which currently gives a
+restrictive 32767 size limit in each dimension)<br>
+- will be very simple to implement and update software (a couple of
+hours coding or less generally)<br>
+- contains the same information and logic as a NIfTI-1 file (no new
+fields and all current fields still retained)<br>
+- will support the existing file formats and naming: a .nii
+single-file, a .hdr/.img file-pair and their gzipped versions<br>
+- has a very simple test (see below) to determine if the file is
+NIfTI-1 or NIfTI-2<br>
+- does not replace NIfTI-1 in the short term but is supported
+alongside it<br>
+<br>
+<b>Comments</b><br>
+This revised version is the result of initial committee discussions
+and public discussion on the NITRC forum.In addition to this
+format, we are seeking comments relating to larger-scale changes
+and requests for other types of format change be posted to a
+separate NITRC discussion list for more advanced neuroimaging
+formats (www.nitrc.org/forum/forum.php?forum_id=1942)<br>
+<br>
+<b>Supporting software</b><br>
+- AFNI, BrainVisa, BrainVoyager, Caret, Connectome Workbench,
+Fiswidgets, FreeSurfer, FSL, ITK, LONI-DIRAC, Mango, MRIcron,
+NiBabel, R, SPM and TractoR have all agreed to support the NIfTI-2
+version in their upcoming releases, but that NIfTI-1 will remain a
+default output, or a configurable default, in the short-term<br>
+- the sourceforge supporting libraries in niftilib will be updated
+so that they seemlessly support both NIfTI-1 and NIfTI-2<br>
+- conversion utilities to and from NIfTI-1 will be made available
+via sourceforge as well as in some of the software packages
+mentioned above<br>
+<br>
+<b>Changes to the header</b><br>
+The changes to the NIfTI header structure are the following (also
+see below for the full header struct):<br>
+- short dim[8] becomes int64_t dim[8]<br>
+- float intent_p1 becomes double intent_p1<br>
+- float intent_p2 becomes double intent_p2<br>
+- float intent_p3 becomes double intent_p3<br>
+- float pixdim[8] becomes double pixdim[8]<br>
+- float vox_offset becomes int64_t vox_offset<br>
+- float scl_slope becomes double scl_slope<br>
+- float scl_inter becomes double scl_inter<br>
+- float cal_max becomes double cal_max<br>
+- float cal_min becomes double cal_min<br>
+- float slice_duration becomes double slice_duration<br>
+- float toffset becomes double toffset<br>
+- short slice_start becomes int64_t slice_start<br>
+- short slice_end becomes int64_t slice_end<br>
+- char slice_code becomes int slice_code<br>
+- char xyzt_units becomes int xyzt_units<br>
+- short intent_code becomes int intent_code<br>
+- short qform_code becomes int qform_code<br>
+- short sform_code becomes int sform_code<br>
+- float quatern_b becomes double quatern_b<br>
+and similarly for quatern_c, quatern_d, qoffset_x, qoffset_y,
+qoffset_z<br>
+- float srow_x[4] becomes double srow_x[4]<br>
+and similarly for srow_y[4], srow_z[4]<br>
+- char magic[4] becomes char magic[8]<br>
+- char unused_str[15] is added at the end of the header<br>
+- removing previously unused fields: data_type, db_name, extents,
+session_error, regular, glmax, glmin<br>
+- reordering of some of the fields to ensure 8-byte alignments for
+all doubles<br>
+The size and type of all other fields remains unchanged.<br>
+The sizeof_hdr must store 540 for a NIfTI-2 file instead of 348 for
+NIfTI-1.<br>
+Extension information is still held in the first 4 bytes after this
+header (bytes 541-544) in the same way as in NIfTI-1.<br>
+Note that the total block size of 544 (header + 4 bytes) retains
+the 16-byte alignment in NIfTI-1 (348+4=352), as needed for
+convenient memory-mapping.<br>
+The changes of float to double are generally made to allow for more
+accurate mapping of intensities or indices when dealing with very
+large arrays, and unused_str is added to ensure the 16-byte
+alignment holds. The 8-byte alignment of doubles is important of
+some platforms and necessitated shifting of several smaller fields.<br>
+In addition, a range of custom codes for NIFTI_INTENT_*,
+NIFTI_XFORM_*, NIFTI_UNITS_* and NIFTI_SLICE_* will be created,
+although these are intended for temporary use only and users are
+encouraged to register any codes that are useful in the long-term
+with the NIfTI committee in order for them to become usable by all
+and keep NIfTI an open standard without private or hidden
+information.<br>
+<br>
+<b>Compatibility</b><br>
+This format is not, and cannot be, bit-wise compatible with the
+previous NIfTI-1 (or ANALYZE) formats and so will not work with
+existing NIfTI-1 software directly. In the short term this can be
+solved via conversion utilities. A NIfTI-2 image will not be
+recognised as a valid NIfTI-1 image by existing software and so no
+incorrect processing or analyses should occur. In the longer term
+most code should be very easily converted to work with both NIfTI-2
+and NIfTI-1 by using the updated sourceforge libraries or making
+equivalent changes internally. The change in format is
+intentionally very minimal and should be very easy to code.<br>
+<br>
+<b>Determining the NIfTI version</b><br>
+The following pseudo-code shows one way that a file can be tested
+to see: (a) if it is a NIfTI image file, (b) what version of NIfTI
+it is, and (c) whether byte-swapping is required.<br>
+read in the first 4 bytes from the file<br>
+let d = the content of these bytes, formatted as a 32-bit int<br>
+if (d==348) then it is a NIfTI-1 file, no byte-swapping required<br>
+else if (swap_4bytes(d)==348) then it is a NIfTI-1 file, but with
+byte-swapping required<br>
+else if (d==540) then it is a NIfTI-2 file, no byte-swapping
+required<br>
+else if (swap_4bytes(d)==540) then it is a NIfTI-2 file, but with
+byte-swapping required<br>
+else it is not a valid NIfTI file<br>
+read in magic[] string from appropriate place (depending on if it
+is NIfTI-1 or NIfTI-2)<br>
+check validity of the NIfTI file by testing the magic[] string
+(should contain "ni1" or "n+1" followed by \0 for NIfTI-1, and
+"ni2" or "n+2" followed by \0 and 4 extra signature bytes for
+NIfTI-2)<br>
+if it passed the above tests then read in the full header into the
+appropriate NIfTI-1 or NIfTI-2 struct<br>
+<br>
+<b>Magic Signature</b><br>
+The magic string is expanded to 8 bytes with the first 4 bytes
+containing ones of the strings "ni2" or "n+2", terminated with \0.
+The next four bytes form a magic signature much the same as used by
+the PNG format (<a href="http://www.libpng.org/pub/png/pngintro.html" target="_new">http://www.libpng.org/pub/png/pngintro.html</a>), to detect for file transfer errors involving newline characters.
+The extra four bytes are the same as the last four in the PNG
+format - that is: \r \n \032 \n (0D 0A 1A 0A)<br>
+The magic string has a different offset from the start of the file
+in NIfTI-1 and NIfTI-2 (344 and 4 bytes respectively).<br>
+<br>
+<b>C Header Struct</b><br>
+<pre>/*! \struct nifti_2_header 
+\brief Data structure defining the fields in the
+nifti2 header.
+This binary header should be found at the
+beginning of a valid
+NIFTI-2 header file.
+*/
+/*************************/                              /************************/   /************/
+struct nifti_2_header {
+/* NIFTI-2 usage */                                      /* NIFTI-1 usage */          /* offset */
+/*************************/                              /************************/   /************/
+int sizeof_hdr;  /*!&lt; MUST be 540 */                     /* int sizeof_hdr; (348)*/   /* 0 */
+char magic[8] ; /*!&lt; MUST be valid signature. */         /* char magic[4]; */         /* 4 */
+short datatype; /*!&lt; Defines data type! */               /* short datatype; */        /* 12 */
+short bitpix; /*!&lt; Number bits/voxel. */                 /* short bitpix; */          /* 14 */
+int64_t dim[8]; /*!&lt; Data array dimensions.*/            /* short dim[8]; */          /* 16 */
+double intent_p1 ; /*!&lt; 1st intent parameter.*/          /* float intent_p1; */       /* 80 */
+double intent_p2 ; /*!&lt; 2nd intent parameter.*/          /* float intent_p2; */       /* 88 */
+double intent_p3 ; /*!&lt; 3rd intent parameter.*/          /* float intent_p3; */       /* 96 */
+double pixdim[8]; /*!&lt; Grid spacings. */                 /* float pixdim[8]; */       /* 104 */
+int64_t vox_offset; /*!&lt; Offset into .nii file */        /* float vox_offset; */      /* 168 */
+double scl_slope ; /*!&lt; Data scaling: slope. */          /* float scl_slope; */       /* 176 */
+double scl_inter ; /*!&lt; Data scaling: offset.*/          /* float scl_inter; */       /* 184 */
+double cal_max; /*!&lt; Max display intensity */            /* float cal_max; */         /* 192 */
+double cal_min; /*!&lt; Min display intensity */            /* float cal_min; */         /* 200 */
+double slice_duration;/*!&lt; Time for 1 slice.*/           /* float slice_duration; */  /* 208 */
+double toffset; /*!&lt; Time axis shift. */                 /* float toffset; */         /* 216 */
+int64_t slice_start; /*!&lt; First slice index.*/           /* short slice_start; */     /* 224 */
+int64_t slice_end; /*!&lt; Last slice index. */             /* short slice_end; */       /* 232 */
+char descrip[80]; /*!&lt; any text you like. */             /* char descrip[80]; */      /* 240 */
+char aux_file[24]; /*!&lt; auxiliary filename. */           /* char aux_file[24]; */     /* 320 */
+int qform_code ; /*!&lt; NIFTI_XFORM_* code. */             /* short qform_code; */      /* 344 */
+int sform_code ; /*!&lt; NIFTI_XFORM_* code. */             /* short sform_code; */      /* 348 */
+double quatern_b ; /*!&lt; Quaternion b param. */           /* float quatern_b; */       /* 352 */
+double quatern_c ; /*!&lt; Quaternion c param. */           /* float quatern_c; */       /* 360 */
+double quatern_d ; /*!&lt; Quaternion d param. */           /* float quatern_d; */       /* 368 */
+double qoffset_x ; /*!&lt; Quaternion x shift. */           /* float qoffset_x; */       /* 376 */
+double qoffset_y ; /*!&lt; Quaternion y shift. */           /* float qoffset_y; */       /* 384 */
+double qoffset_z ; /*!&lt; Quaternion z shift. */           /* float qoffset_z; */       /* 392 */
+double srow_x[4] ; /*!&lt; 1st row affine transform.*/      /* float srow_x[4]; */       /* 400 */
+double srow_y[4] ; /*!&lt; 2nd row affine transform.*/      /* float srow_y[4]; */       /* 432 */
+double srow_z[4] ; /*!&lt; 3rd row affine transform.*/      /* float srow_z[4]; */       /* 464 */
+int slice_code ; /*!&lt; Slice timing order. */             /* char slice_code; */       /* 496 */
+int xyzt_units ; /*!&lt; Units of pixdim[1..4] */           /* char xyzt_units; */       /* 500 */
+int intent_code ; /*!&lt; NIFTI_INTENT_* code. */           /* short intent_code; */     /* 504 */
+char intent_name[16]; /*!&lt; 'name' or meaning of data.*/  /* char intent_name[16]; */  /* 508 */
+char dim_info; /*!&lt; MRI slice ordering. */               /* char dim_info; */         /* 524 */
+char unused_str[15]; /*!&lt; unused, filled with \0*/                                    /* 525 */
+} ; /**** 540 bytes total ****/
+typedef struct nifti_2_header nifti_2_header;
+</pre>
+</body></html>
