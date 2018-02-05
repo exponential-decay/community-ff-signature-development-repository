@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FFSignatureFile xmlns="http://www.nationalarchives.gov.uk/pronom/SignatureFile" Version="1" DateCreated="2018-02-05T02:40:01+00:00">
+  <InternalSignatureCollection>
+    <InternalSignature ID="1" Specificity="Specific">
+      <ByteSequence Reference="EOFoffset">
+        <SubSequence MinFragLength="344" Position="1" SubSeqMaxOffset="0" SubSeqMinOffset="0">
+          <Sequence>5C010000</Sequence>
+          <DefaultShift>-5</DefaultShift>
+          <Shift Byte="5C">-1</Shift>
+          <Shift Byte="01">-2</Shift>
+          <Shift Byte="00">-3</Shift>
+          <RightFragment MaxOffset="340" MinOffset="340" Position="1">6E693100</RightFragment>
+        </SubSequence>
+      </ByteSequence>
+    </InternalSignature>
+    <InternalSignature ID="2" Specificity="Specific">
+      <ByteSequence Reference="EOFoffset">
+        <SubSequence MinFragLength="344" Position="1" SubSeqMaxOffset="0" SubSeqMinOffset="0">
+          <Sequence>0000015C</Sequence>
+          <DefaultShift>-5</DefaultShift>
+          <Shift Byte="00">-1</Shift>
+          <Shift Byte="01">-3</Shift>
+          <Shift Byte="5C">-4</Shift>
+          <RightFragment MaxOffset="340" MinOffset="340" Position="1">6E693100</RightFragment>
+        </SubSequence>
+      </ByteSequence>
+    </InternalSignature>
+  </InternalSignatureCollection>
+  <FileFormatCollection>
+    <FileFormat ID="1" Name="NIFTI version 1 (w/out image)" PUID="nypl/6" Version="1.0" MIMEType="">
+      <InternalSignatureID>1</InternalSignatureID>
+      <InternalSignatureID>2</InternalSignatureID>
+      <Extension>hdr</Extension>
+    </FileFormat>
+  </FileFormatCollection>
+</FFSignatureFile>

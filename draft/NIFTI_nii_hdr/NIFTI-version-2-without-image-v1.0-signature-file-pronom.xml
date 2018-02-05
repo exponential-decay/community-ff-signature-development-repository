@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FFSignatureFile xmlns="http://www.nationalarchives.gov.uk/pronom/SignatureFile" Version="1" DateCreated="2018-02-05T02:40:01+00:00">
+  <InternalSignatureCollection>
+    <InternalSignature ID="1" Specificity="Specific">
+      <ByteSequence Reference="EOFoffset">
+        <SubSequence MinFragLength="344" Position="1" SubSeqMaxOffset="0" SubSeqMinOffset="0">
+          <Sequence>0000021C6E2B32000D0A1A0A</Sequence>
+          <DefaultShift>-13</DefaultShift>
+          <Shift Byte="00">-1</Shift>
+          <Shift Byte="02">-3</Shift>
+          <Shift Byte="1C">-4</Shift>
+          <Shift Byte="6E">-5</Shift>
+          <Shift Byte="2B">-6</Shift>
+          <Shift Byte="32">-7</Shift>
+          <Shift Byte="0D">-9</Shift>
+          <Shift Byte="0A">-10</Shift>
+          <Shift Byte="1A">-11</Shift>
+        </SubSequence>
+      </ByteSequence>
+    </InternalSignature>
+    <InternalSignature ID="2" Specificity="Specific">
+      <ByteSequence Reference="EOFoffset">
+        <SubSequence MinFragLength="344" Position="1" SubSeqMaxOffset="0" SubSeqMinOffset="0">
+          <Sequence>1C0200006E2B32000D0A1A0A</Sequence>
+          <DefaultShift>-13</DefaultShift>
+          <Shift Byte="1C">-1</Shift>
+          <Shift Byte="02">-2</Shift>
+          <Shift Byte="00">-3</Shift>
+          <Shift Byte="6E">-5</Shift>
+          <Shift Byte="2B">-6</Shift>
+          <Shift Byte="32">-7</Shift>
+          <Shift Byte="0D">-9</Shift>
+          <Shift Byte="0A">-10</Shift>
+          <Shift Byte="1A">-11</Shift>
+        </SubSequence>
+      </ByteSequence>
+    </InternalSignature>
+  </InternalSignatureCollection>
+  <FileFormatCollection>
+    <FileFormat ID="1" Name="NIFTI version 2 (w/out image)" PUID="nypl/8" Version="1.0" MIMEType="">
+      <InternalSignatureID>1</InternalSignatureID>
+      <InternalSignatureID>2</InternalSignatureID>
+      <Extension>hdr</Extension>
+    </FileFormat>
+  </FileFormatCollection>
+</FFSignatureFile>
